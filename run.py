@@ -6,7 +6,7 @@ app = create_app()
 
 
 @app.route("/")
-def hello_world():
+def index():
     initialize_gee()
     city_landsat_img_url = get_satellite_image()
     return render_template("index.html",
