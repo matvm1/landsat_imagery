@@ -21,8 +21,12 @@ def get_satellite_image():
     #lon = ee.Number(-74.0060)
 
     # Miami
-    lat = ee.Number(25.7617)
-    lon = ee.Number(-80.1918)
+    #lat = ee.Number(25.7617)
+    #lon = ee.Number(-80.1918)
+
+    #Charlotte
+    lat = ee.Number(35.2271)
+    lon = ee.Number(-80.8431)
 
     if lat is None or lon is None:
         print(f"Could not find the coordinates for {city_name}.")
@@ -38,7 +42,7 @@ def get_satellite_image():
     ])
 
     # Use Landsat 8 imagery (you can adjust the date range as needed)
-    image_collection = ee.ImageCollection('LANDSAT/LC09/C02/T1_L2') \
+    image_collection = ee.ImageCollection('LANDSAT/LC08/C02/T1_L2') \
         .filterBounds(region) \
         .filterDate('2020-01-01', '2025-12-31')
 
@@ -46,13 +50,31 @@ def get_satellite_image():
 
     image = image_collection.first().clip(region)
 
-    out_image = image.visualize(
-        bands=['SR_B4', 'SR_B3', 'SR_B2'],  # RGB bands
+    # Compute min/max values for normalization using percentiles
+    stats = image.reduceRegion(
+        # Compute 2nd and 98th percentile
+        reducer=ee.Reducer.percentile([2, 98]),
+        geometry=region,
+        scale=30,
+        maxPixels=1e13
     )
 
-    url = out_image.getThumbURL({region: region, format: 'png'})
+    RGBbands = ['SR_B4', 'SR_B3', 'SR_B2']
 
-    # Export the image
+    # Get min/max values dynamically
+    min_vals = [stats.getNumber(band + '_p2') for band in RGBbands]
+    max_vals = [stats.getNumber(band + '_p98') for band in RGBbands]
+
+    # Normalize the image using computed min/max values
+    normalized_image = image.visualize(
+        bands=RGBbands,  # Landsat 8 RGB bands
+        min=[val.getInfo() for val in min_vals],  # Convert EE values to Python
+        max=[val.getInfo() for val in max_vals],
+        gamma=1.4  # Slight gamma adjustment for contrast
+    )
+
+    # Generate thumbnail URL
+    url = normalized_image.getThumbURL({'region': region, 'format': 'png'})
+
     print(f"Satellite image URL: {url}")
     return url
-
