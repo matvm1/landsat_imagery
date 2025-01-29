@@ -14,7 +14,8 @@ def index():
 def get_landsat_image():
     initialize_gee()
     city_landsat_img_url = get_satellite_image()
-    return render_template("city_center.html", city_landsat_img_url=city_landsat_img_url)
+    return render_template("city_center.html",
+                           city_landsat_img_url=city_landsat_img_url)
 
 
 if __name__ == "__main__":
