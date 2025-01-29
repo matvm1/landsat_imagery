@@ -25,9 +25,12 @@ def get_satellite_image():
     else:
         print(f"Coordinates for {city_name}: {lat}, {lon}")
 
-    # Define the region (a small buffer around the city)
-    point = ee.Geometry.Point(lon, lat)
-    region = point.buffer(10000)  # Buffer of 10km
+    # Define the region (a small rectangle around the city)
+    # TODO: Refine the region based on the city's area
+    region = ee.Geometry.Rectangle([
+        lon - 0.13, lat - 0.07,  # Bottom-left corner
+        lon + 0.13, lat + 0.07   # Top-right corner
+    ])
 
     # Use Landsat 8 imagery (you can adjust the date range as needed)
     # Perhaps enhance by filtering out cloudy images rather than sorting
