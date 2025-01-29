@@ -17,7 +17,7 @@ def get_satellite_image():
     # lat, lon = get_coordinates(city_name)
 
     lat = 40.7128
-    lon = 74.0060
+    lon = -74.0060
 
     if lat is None or lon is None:
         print(f"Could not find the coordinates for {city_name}.")
@@ -36,18 +36,15 @@ def get_satellite_image():
         .filterDate('2020-01-01', '2025-12-31') \
         .sort('CLOUDY_PIXEL_PERCENTAGE') \
         .first()  # Take the first image with least clouds
-
     # Get the image
     image = image_collection.clip(region)
 
-    # You can visualize the image, e.g., using folium or exporting the image
-    # For this example, we'll export the image
-    url = image.getThumbURL({
-        'min': 0,
-        'max': 3000,
-        'bands': ['SR_B4', 'SR_B3', 'SR_B2'],  # RGB bands
-        'dimensions': 512
-    })
+    out_image = image.visualize(
+        bands=['SR_B4', 'SR_B3', 'SR_B2'],  # RGB bands
+    )
 
+    url = out_image.getThumbURL({region: region, format: 'png'})
+
+    # Export the image
     print(f"Satellite image URL: {url}")
     return url
