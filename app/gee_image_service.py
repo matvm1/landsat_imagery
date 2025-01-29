@@ -16,8 +16,13 @@ def get_satellite_image():
     # Get the coordinates of the city
     # lat, lon = get_coordinates(city_name)
 
-    lat = ee.Number(40.7128)
-    lon = ee.Number(-74.0060)
+    # NYC
+    #lat = ee.Number(40.7128)
+    #lon = ee.Number(-74.0060)
+
+    # Miami
+    lat = ee.Number(25.7617)
+    lon = ee.Number(-80.1918)
 
     if lat is None or lon is None:
         print(f"Could not find the coordinates for {city_name}.")
@@ -33,11 +38,11 @@ def get_satellite_image():
     ])
 
     # Use Landsat 8 imagery (you can adjust the date range as needed)
-    image_collection = ee.ImageCollection('LANDSAT/LC08/C02/T1_L2') \
+    image_collection = ee.ImageCollection('LANDSAT/LC09/C02/T1_L2') \
         .filterBounds(region) \
         .filterDate('2020-01-01', '2025-12-31')
 
-    # image_collection = image_collection.filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 50));
+    #image_collection = image_collection.filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 50));
 
     image = image_collection.first().clip(region)
 
@@ -50,3 +55,4 @@ def get_satellite_image():
     # Export the image
     print(f"Satellite image URL: {url}")
     return url
+
