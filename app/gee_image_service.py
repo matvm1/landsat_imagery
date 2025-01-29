@@ -33,14 +33,13 @@ def get_satellite_image():
     ])
 
     # Use Landsat 8 imagery (you can adjust the date range as needed)
-    # Perhaps enhance by filtering out cloudy images rather than sorting
     image_collection = ee.ImageCollection('LANDSAT/LC08/C02/T1_L2') \
         .filterBounds(region) \
-        .filterDate('2020-01-01', '2025-12-31') \
-        .sort('CLOUDY_PIXEL_PERCENTAGE') \
-        .first()  # Take the first image with least clouds
-    # Get the image
-    image = image_collection.clip(region)
+        .filterDate('2020-01-01', '2025-12-31')
+
+    # image_collection = image_collection.filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 50));
+
+    image = image_collection.first().clip(region)
 
     out_image = image.visualize(
         bands=['SR_B4', 'SR_B3', 'SR_B2'],  # RGB bands
