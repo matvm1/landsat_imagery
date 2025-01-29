@@ -9,8 +9,7 @@ app = create_app()
 def index():
     initialize_gee()
     city_landsat_img_url = get_satellite_image()
-    return render_template("index.html",
-                           city_landsat_img_url=city_landsat_img_url)
+    return render_template("index.html")
 
 
 if __name__ == "__main__":
