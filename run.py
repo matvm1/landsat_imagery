@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 from app import create_app
-from app.services.landsat_image_service import initialize_service, get_landsat_image
+from app.services.landsat_image_service import init_landsat_service, get_landsat_image
 from flask import render_template, redirect, request
 from app.services.geocoder_service import get_coordinates
 
@@ -16,7 +16,7 @@ def index():
 
 @app.route("/get_landsat_img")
 def landsat_image():
-    initialize_service()
+    init_landsat_service()
 
     lat, lon = get_coordinates(request.args.get('city'),
                                request.args.get('state'))

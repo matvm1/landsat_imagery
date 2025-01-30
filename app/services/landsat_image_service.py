@@ -1,7 +1,7 @@
 import ee
 
 
-def initialize_service():
+def init_landsat_service():
     """Authenticate and initialize Google Earth Engine."""
     try:
         ee.Authenticate()
