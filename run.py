@@ -1,7 +1,10 @@
+from dotenv import load_dotenv
 from app import create_app
 from app.image_service import initialize_gee, get_satellite_image
 from flask import render_template, request
 from app.geocoder import get_coordinates
+
+load_dotenv()
 
 app = create_app()
 
@@ -22,7 +25,6 @@ def get_landsat_image():
         print("Could not find the coordinates for the city.")
         return
 
-    print(f"Coordinates: {lat}, {lon}")
     city_landsat_img_url = get_satellite_image()
     return render_template("city_center.html",
                            city_landsat_img_url=city_landsat_img_url)
