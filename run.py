@@ -4,7 +4,7 @@ from app.image_service import initialize_gee, get_satellite_image
 from flask import render_template, request
 from app.geocoder import get_coordinates
 
-load_dotenv()
+load_dotenv(override=True)
 
 app = create_app()
 
