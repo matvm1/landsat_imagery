@@ -18,14 +18,15 @@ def index():
 def get_landsat_image():
     initialize_gee()
 
-    lat, lon = get_coordinates("Charlotte", "NC")
+    lat, lon = get_coordinates(request.args.get('city'),
+                               request.args.get('state'))
 
     # Check if the coordinates are valid
     if (lat, lon) == (None, None):
         print("Could not find the coordinates for the city.")
         return
 
-    city_landsat_img_url = get_satellite_image()
+    city_landsat_img_url = get_satellite_image(lat, lon)
     return render_template("city_center.html",
                            city_landsat_img_url=city_landsat_img_url)
 

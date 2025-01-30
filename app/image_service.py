@@ -11,15 +11,9 @@ def initialize_gee():
         print(f"Error initializing GEE: {e}")
 
 
-def get_satellite_image():
-    city_name = "NYC"
-
-    lat = ee.Number(35.2271)
-    lon = ee.Number(-80.8431)
-
-    if lat is None or lon is None:
-        print(f"Could not find the coordinates for {city_name}.")
-        return
+def get_satellite_image(lat, lon):
+    lat = ee.Number(lat)
+    lon = ee.Number(lon)
 
     # Define the region (a small rectangle around the city)
     # TODO: Refine the region based on the city's area
