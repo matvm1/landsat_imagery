@@ -1,8 +1,8 @@
 from dotenv import load_dotenv
 from app import create_app
-from app.landsat_image_service import initialize_service, get_landsat_image
+from app.services.landsat_image_service import initialize_service, get_landsat_image
 from flask import render_template, redirect, request
-from app.geocoder_service import get_coordinates
+from app.services.geocoder_service import get_coordinates
 
 load_dotenv(override=True)
 

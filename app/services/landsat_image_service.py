@@ -45,7 +45,7 @@ def get_landsat_image(lat, lon):
 
     # Get min/max values in a single getInfo() call
     stats_info = stats.getInfo()
-
+    
     RGBbands = ['SR_B4', 'SR_B3', 'SR_B2']
 
     # Get min/max values dynamically
