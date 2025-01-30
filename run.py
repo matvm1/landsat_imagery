@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 from app import create_app
 from app.image_service import initialize_gee, get_satellite_image
-from flask import render_template, request
+from flask import render_template, redirect, request
 from app.geocoder import get_coordinates
 
 load_dotenv(override=True)
@@ -27,6 +27,11 @@ def get_landsat_image():
         return
 
     city_landsat_img_url = get_satellite_image(lat, lon)
+
+    if not city_landsat_img_url:
+        print(f"Error getting satellite image: {e}")
+        return redirect("/")
+
     return render_template("city_center.html",
                            city_landsat_img_url=city_landsat_img_url)
 

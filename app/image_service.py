@@ -58,4 +58,3 @@ def get_satellite_image(lat, lon):
 
     print(f"Satellite image URL: {url}")
     return url
-
