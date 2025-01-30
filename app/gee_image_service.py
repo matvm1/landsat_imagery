@@ -37,16 +37,15 @@ def get_satellite_image():
     # Define the region (a small rectangle around the city)
     # TODO: Refine the region based on the city's area
     region = ee.Geometry.Rectangle([
-        lon.subtract(0.13), lat.subtract(0.07),  # Bottom-left corner
-        lon.add(0.13), lat.add(0.07)   # Top-right corner
+        lon.subtract(0.13), lat.subtract(0.07),
+        lon.add(0.13), lat.add(0.07)
     ])
 
     # Use Landsat 8 imagery (you can adjust the date range as needed)
     image_collection = ee.ImageCollection('LANDSAT/LC08/C02/T1_L2') \
         .filterBounds(region) \
-        .filterDate('2020-01-01', '2025-12-31')
-
-    #image_collection = image_collection.filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 50));
+        .filterDate('2020-01-01', '2025-12-31') \
+        .sort('CLOUD_COVER')
 
     image = image_collection.first().clip(region)
 
