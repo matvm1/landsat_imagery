@@ -13,26 +13,13 @@ def initialize_gee():
 
 def get_satellite_image():
     city_name = "NYC"
-    # Get the coordinates of the city
-    # lat, lon = get_coordinates(city_name)
 
-    # NYC
-    #lat = ee.Number(40.7128)
-    #lon = ee.Number(-74.0060)
-
-    # Miami
-    #lat = ee.Number(25.7617)
-    #lon = ee.Number(-80.1918)
-
-    #Charlotte
     lat = ee.Number(35.2271)
     lon = ee.Number(-80.8431)
 
     if lat is None or lon is None:
         print(f"Could not find the coordinates for {city_name}.")
         return
-    else:
-        print(f"Coordinates for {city_name}: {lat}, {lon}")
 
     # Define the region (a small rectangle around the city)
     # TODO: Refine the region based on the city's area
@@ -77,3 +64,4 @@ def get_satellite_image():
 
     print(f"Satellite image URL: {url}")
     return url
+
