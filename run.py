@@ -1,5 +1,5 @@
 from app import create_app
-from app.gee_image_service import initialize_gee, get_satellite_image
+from app.image_service import initialize_gee, get_satellite_image
 from flask import render_template
 
 app = create_app()
