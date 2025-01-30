@@ -30,6 +30,10 @@ def get_landsat_image(lat, lon):
 
     image = image_collection.first().clip(region)
 
+    image_id = image.get('system:index').getInfo()
+
+    print("Image ID:", image_id)
+
     # Compute min/max values for normalization using percentiles
     stats = image.reduceRegion(
         # Compute 2nd and 98th percentile
@@ -39,17 +43,20 @@ def get_landsat_image(lat, lon):
         maxPixels=1e13
     )
 
+    # Get min/max values in a single getInfo() call
+    stats_info = stats.getInfo()
+
     RGBbands = ['SR_B4', 'SR_B3', 'SR_B2']
 
     # Get min/max values dynamically
-    min_vals = [stats.getNumber(band + '_p2') for band in RGBbands]
-    max_vals = [stats.getNumber(band + '_p98') for band in RGBbands]
+    min_vals = [stats_info[band + '_p2'] for band in RGBbands]
+    max_vals = [stats_info[band + '_p98'] for band in RGBbands]
 
     # Normalize the image using computed min/max values
     normalized_image = image.visualize(
         bands=RGBbands,  # Landsat 8 RGB bands
-        min=[val.getInfo() for val in min_vals],  # Convert EE values to Python
-        max=[val.getInfo() for val in max_vals],
+        min=min_vals,  # Convert EE values to Python
+        max=max_vals,
         gamma=1.4  # Slight gamma adjustment for contrast
     )
 
