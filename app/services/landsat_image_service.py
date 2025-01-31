@@ -8,7 +8,7 @@ def init_landsat_service():
     try:
         ee.Authenticate()
         ee.Initialize(project='ee-city-center-detector')
-        print("Google Earth Engine initialized successfully")
+        print('Google Earth Engine initialized successfully')
     except Exception as e:
         print(f"Error initializing GEE: {e}")
 
@@ -60,9 +60,11 @@ def visualize_landsat_image(image, bands):
         gamma=1.4  # Slight gamma adjustment for contrast
     )
 
-    # Generate thumbnail URL
-    url = normalized_image.getThumbURL({'region': image.geometry(),
-                                        'format': 'png'})
+    return normalized_image
 
-    print(f"Satellite image URL: {url}")
+
+def get_landsat_img_URL(image):
+    # Generate thumbnail URL
+    url = image.getThumbURL({'region': image.geometry(), 'format': 'png'})
+
     return url
