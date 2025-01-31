@@ -8,7 +8,7 @@ def init_landsat_service():
     try:
         ee.Authenticate()
         ee.Initialize(project='ee-city-center-detector')
-        print("Google Earth Engine initialized successfully.")
+        print("Google Earth Engine initialized successfully")
     except Exception as e:
         print(f"Error initializing GEE: {e}")
 
@@ -35,7 +35,7 @@ def get_landsat_image(lat, lon):
     return image
 
 
-def visualize_landsat_image(image):
+def visualize_landsat_image(image, bands):
     # Compute min/max values for normalization using percentiles
     stats = image.reduceRegion(
         # Compute 2nd and 98th percentile
@@ -48,15 +48,13 @@ def visualize_landsat_image(image):
     # Get min/max values in a single getInfo() call
     stats_info = stats.getInfo()
 
-    RGBbands = ['SR_B4', 'SR_B3', 'SR_B2']
-
     # Get min/max values dynamically
-    min_vals = [stats_info[band + '_p2'] for band in RGBbands]
-    max_vals = [stats_info[band + '_p98'] for band in RGBbands]
+    min_vals = [stats_info[band + '_p2'] for band in bands]
+    max_vals = [stats_info[band + '_p98'] for band in bands]
 
     # Normalize the image using computed min/max values
     normalized_image = image.visualize(
-        bands=RGBbands,  # Landsat 8 RGB bands
+        bands=bands,  # Landsat 8 RGB bands
         min=min_vals,  # Convert EE values to Python
         max=max_vals,
         gamma=1.4  # Slight gamma adjustment for contrast

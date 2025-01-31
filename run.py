@@ -8,13 +8,14 @@ load_dotenv(override=True)
 
 app = create_app()
 
+band_composites = {"RBG": ['SR_B4', 'SR_B3', 'SR_B2']}
 
-@app.route("/")
+@app.route('/')
 def index():
-    return render_template("index.html")
+    return render_template('index.html')
 
 
-@app.route("/get_landsat_img")
+@app.route('/get_landsat_img')
 def landsat_image():
     init_landsat_service()
 
@@ -23,19 +24,19 @@ def landsat_image():
 
     # Check if the coordinates are valid
     if (lat, lon) == (None, None):
-        print("Could not find the coordinates for the city.")
+        print('Could not find the coordinates for the city.')
         return
 
-    city_landsat_img_url = visualize_landsat_image(get_landsat_image(lat,
-                                                                     lon))
+    city_landsat_img_url = visualize_landsat_image(
+        get_landsat_image(lat, lon), band_composites['RBG'])
 
     if not city_landsat_img_url:
-        print(f"Error getting satellite image: {e}")
-        return redirect("/")
+        print('Error getting satellite image.')
+        return redirect('/')
 
-    return render_template("city_center.html",
+    return render_template('city_center.html',
                            city_landsat_img_url=city_landsat_img_url)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
