@@ -1,14 +1,13 @@
 from dotenv import load_dotenv
-from app import create_app, init_lsatimg_service
-from app.services.landsat_image_service import get_landsat_image, visualize_landsat_image, get_landsat_img_URL
+from app import create_app
+from app.services import (init_lsatimg, get_lsatimg, viz_lsat_img,
+                          get_lsatimg_url, get_coords)
 from flask import render_template, redirect, request
-from app.services.geocoder_service import get_coordinates
+
 
 load_dotenv(override=True)
-
 app = create_app()
 
-band_composites = {"RBG": ['SR_B4', 'SR_B3', 'SR_B2']}
 
 @app.route('/')
 def index():
@@ -17,18 +16,18 @@ def index():
 
 @app.route('/get_landsat_img')
 def landsat_image():
-    init_lsatimg_service()
+    init_lsatimg()
 
-    lat, lon = get_coordinates(request.args.get('city'),
-                               request.args.get('state'))
+    lat, lon = get_coords(request.args.get('city'),
+                          request.args.get('state'))
 
     # Check if the coordinates are valid
     if (lat, lon) == (None, None):
         print('Could not find the coordinates for the city.')
         return
 
-    city_landsat_img_url = get_landsat_img_URL(visualize_landsat_image(
-        get_landsat_image(lat, lon), band_composites['RBG']))
+    city_landsat_img_url = get_lsatimg_url(viz_lsat_img(
+        get_lsatimg(lat, lon), "RBG"))
 
     if not city_landsat_img_url:
         print('Error getting satellite image.')
