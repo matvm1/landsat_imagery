@@ -1,10 +1,10 @@
-import os
+from os import getenv
 import googlemaps
 
 
-def get_coordinates(city_name, state):
+def get_coords(city_name, state):
     # Initialize the Google Maps client
-    gmaps = googlemaps.Client(key=os.getenv("GOOGLE_MAPS_API_KEY"))
+    gmaps = googlemaps.Client(key=getenv("GOOGLE_MAPS_API_KEY"))
 
     # Geocode the address (fetch the latitude and longitude)
     geocode_result = gmaps.geocode(f"{city_name}, {state}")

@@ -1,7 +1,7 @@
 import ee
 
 IMAGE_COLLECTION_NAME = 'LANDSAT/LC08/C02/T1_L2'
-BAND_COMPOSITES = {"RBG": ['SR_B4', 'SR_B3', 'SR_B2']}
+BAND_COMBINATIONS = {"RBG": ['SR_B4', 'SR_B3', 'SR_B2']}
 
 
 def get_lsatimg(lat, lon):
@@ -39,7 +39,7 @@ def viz_lsat_img(image, band_comp_str):
     # Get min/max values in a single getInfo() call
     stats_info = stats.getInfo()
 
-    bands = BAND_COMPOSITES[band_comp_str]
+    bands = BAND_COMBINATIONS[band_comp_str]
 
     # Get min/max values dynamically
     min_vals = [stats_info[band + '_p2'] for band in bands]

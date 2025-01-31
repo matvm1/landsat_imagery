@@ -1,7 +1,7 @@
 from ee import Authenticate as ee_Auth, Initialize as ee_Init
 
 
-def init_lsatimg_service():
+def init_lsatimg():
     """Authenticate and initialize Google Earth Engine."""
     try:
         ee_Auth()
@@ -11,4 +11,5 @@ def init_lsatimg_service():
         print(f"Error initializing GEE: {e}")
 
 
-from .lsatimg_service import get_lsatimg, viz_lsat_img, get_lsatimg_url
+from .lsatimg import get_lsatimg, viz_lsat_img, get_lsatimg_url
+from .geocoder import get_coords
