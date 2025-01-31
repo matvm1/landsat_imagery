@@ -1,7 +1,18 @@
 import ee
 
 IMAGE_COLLECTION_NAME = 'LANDSAT/LC08/C02/T1_L2'
-BAND_COMBINATIONS = {"RBG": ['SR_B4', 'SR_B3', 'SR_B2']}
+BAND_COMBINATIONS = {
+    'Natural': ['SR_B4', 'SR_B3', 'SR_B2'],
+    'False Color (urban)': ['SR_B7', 'SR_B6', 'SR_B4'],
+    'Color Infrared (vegetation)': ['SR_B5', 'SR_B4', 'SR_B3'],
+    'Agriculture': ['SR_B6', 'SR_B5', 'SR_B2'],
+    'Atmospheric Penetration': ['SR_B7', 'SR_B6', 'SR_B5'],
+    'Healthy Vegetation': ['SR_B5', 'SR_B6', 'SR_B2'],
+    'Land/Water': ['SR_B5', 'SR_B6', 'SR_B4'],
+    'Natural With Atmospheric Removal': ['SR_B7', 'SR_B5', 'SR_B3'],
+    'Shortwave Infrared': ['SR_B7', 'SR_B5', 'SR_B4'],
+    'Vegetation Analysis': ['SR_B6', 'SR_B5', 'SR_B4']
+}
 
 
 def get_lsatimg(lat, lon):

@@ -27,7 +27,7 @@ def landsat_image():
         return
 
     city_landsat_img_url = get_lsatimg_url(viz_lsat_img(
-        get_lsatimg(lat, lon), "RBG"))
+        get_lsatimg(lat, lon), 'Natural'))
 
     if not city_landsat_img_url:
         print('Error getting satellite image.')

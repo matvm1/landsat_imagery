@@ -11,5 +11,6 @@ def init_lsatimg():
         print(f"Error initializing GEE: {e}")
 
 
-from .lsatimg import get_lsatimg, viz_lsat_img, get_lsatimg_url
+from .lsatimg import (get_lsatimg, viz_lsat_img, get_lsatimg_url,
+                      BAND_COMBINATIONS)
 from .geocoder import get_coords
