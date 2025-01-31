@@ -3,16 +3,6 @@ import ee
 IMAGE_COLLECTION_NAME = 'LANDSAT/LC08/C02/T1_L2'
 
 
-def init_landsat_service():
-    """Authenticate and initialize Google Earth Engine."""
-    try:
-        ee.Authenticate()
-        ee.Initialize(project='ee-city-center-detector')
-        print('Google Earth Engine initialized successfully')
-    except Exception as e:
-        print(f"Error initializing GEE: {e}")
-
-
 def get_landsat_image(lat, lon):
     lat = ee.Number(lat)
     lon = ee.Number(lon)
