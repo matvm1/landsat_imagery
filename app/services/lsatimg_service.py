@@ -1,6 +1,7 @@
 import ee
 
 IMAGE_COLLECTION_NAME = 'LANDSAT/LC08/C02/T1_L2'
+BAND_COMPOSITES = {"RBG": ['SR_B4', 'SR_B3', 'SR_B2']}
 
 
 def get_lsatimg(lat, lon):
@@ -25,7 +26,7 @@ def get_lsatimg(lat, lon):
     return image
 
 
-def viz_lsat_img(image, bands):
+def viz_lsat_img(image, band_comp_str):
     # Compute min/max values for normalization using percentiles
     stats = image.reduceRegion(
         # Compute 2nd and 98th percentile
@@ -37,6 +38,8 @@ def viz_lsat_img(image, bands):
 
     # Get min/max values in a single getInfo() call
     stats_info = stats.getInfo()
+
+    bands = BAND_COMPOSITES[band_comp_str]
 
     # Get min/max values dynamically
     min_vals = [stats_info[band + '_p2'] for band in bands]
