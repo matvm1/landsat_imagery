@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 from app import create_app
-from app.services.landsat_image_service import init_landsat_service, get_landsat_image
+from app.services.landsat_image_service import init_landsat_service, get_landsat_image, visualize_landsat_image
 from flask import render_template, redirect, request
 from app.services.geocoder_service import get_coordinates
 
@@ -26,7 +26,8 @@ def landsat_image():
         print("Could not find the coordinates for the city.")
         return
 
-    city_landsat_img_url = get_landsat_image(lat, lon)
+    city_landsat_img_url = visualize_landsat_image(get_landsat_image(lat,
+                                                                     lon))
 
     if not city_landsat_img_url:
         print(f"Error getting satellite image: {e}")

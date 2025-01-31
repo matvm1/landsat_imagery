@@ -1,5 +1,7 @@
 import ee
 
+IMAGE_COLLECTION_NAME = 'LANDSAT/LC08/C02/T1_L2'
+
 
 def init_landsat_service():
     """Authenticate and initialize Google Earth Engine."""
@@ -23,29 +25,29 @@ def get_landsat_image(lat, lon):
     ])
 
     # Use Landsat 8 imagery
-    image_collection = ee.ImageCollection('LANDSAT/LC08/C02/T1_L2') \
+    image_collection = ee.ImageCollection(IMAGE_COLLECTION_NAME) \
         .filterBounds(region) \
         .filterDate('2020-01-01', '2025-12-31') \
         .sort('CLOUD_COVER')
 
     image = image_collection.first().clip(region)
 
-    image_id = image.get('system:index').getInfo()
+    return image
 
-    print("Image ID:", image_id)
 
+def visualize_landsat_image(image):
     # Compute min/max values for normalization using percentiles
     stats = image.reduceRegion(
         # Compute 2nd and 98th percentile
         reducer=ee.Reducer.percentile([2, 98]),
-        geometry=region,
+        geometry=image.geometry(),
         scale=30,
         maxPixels=1e13
     )
 
     # Get min/max values in a single getInfo() call
     stats_info = stats.getInfo()
-    
+
     RGBbands = ['SR_B4', 'SR_B3', 'SR_B2']
 
     # Get min/max values dynamically
@@ -61,7 +63,8 @@ def get_landsat_image(lat, lon):
     )
 
     # Generate thumbnail URL
-    url = normalized_image.getThumbURL({'region': region, 'format': 'png'})
+    url = normalized_image.getThumbURL({'region': image.geometry(),
+                                        'format': 'png'})
 
     print(f"Satellite image URL: {url}")
     return url
