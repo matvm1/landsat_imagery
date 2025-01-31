@@ -3,7 +3,7 @@ import ee
 IMAGE_COLLECTION_NAME = 'LANDSAT/LC08/C02/T1_L2'
 
 
-def get_landsat_image(lat, lon):
+def get_lsatimg(lat, lon):
     lat = ee.Number(lat)
     lon = ee.Number(lon)
 
@@ -25,7 +25,7 @@ def get_landsat_image(lat, lon):
     return image
 
 
-def visualize_landsat_image(image, bands):
+def viz_lsat_img(image, bands):
     # Compute min/max values for normalization using percentiles
     stats = image.reduceRegion(
         # Compute 2nd and 98th percentile
@@ -53,7 +53,7 @@ def visualize_landsat_image(image, bands):
     return normalized_image
 
 
-def get_landsat_img_URL(image):
+def get_lsatimg_url(image):
     # Generate thumbnail URL
     url = image.getThumbURL({'region': image.geometry(), 'format': 'png'})
 
