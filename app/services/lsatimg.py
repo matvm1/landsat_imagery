@@ -14,15 +14,25 @@ BAND_COMBINATIONS = {
     'Vegetation Analysis': ['SR_B6', 'SR_B5', 'SR_B4']
 }
 
+# Defines the width of the geographic area when fetching landsat image
+# (in geographic degrees)
 REGION_X_DEGREE_WIDTH = 0.08
 REGION_Y_DEGREE_WIDTH = 0.08
+
+# ImageCollection start and end date filters
 IMG_COLLECTION_START_DATE = '2020-01-01'
 IMG_COLLECTION_END_DATE = '2025-12-31'
+
+# Reducer options (for image color adjustment and resolution):
+#   Min/Max: Percentile options for band RGB values
+#   Scale: The size of the pixel grid during aggregation
+#           (smaller scale -> higher resolution)
 REDUCER_MIN = 2
 REDUCER_MAX = 98
-REDUCER_SCALE = 30
-REDUCER_MAX_PIXELS = 1e13
-GAMMA_ADJUSTMENT = 1.4  # Gamma adjustment for contrast
+REDUCER_SCALE = 60
+
+# Gamma adjustment for contrast when visualizing
+GAMMA_ADJUSTMENT = 1.4
 
 
 def get_lsatimg(lat, lon):
@@ -79,7 +89,7 @@ def get_lsatimg_stats(image):
         reducer=ee.Reducer.percentile([REDUCER_MIN, REDUCER_MAX]),
         geometry=image.geometry(),
         scale=REDUCER_SCALE,
-        maxPixels=REDUCER_MAX_PIXELS
+        bestEffort=True
     )
 
     stats_info = stats.getInfo()
