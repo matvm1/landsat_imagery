@@ -13,8 +13,16 @@ BAND_COMBINATIONS = {
     'Shortwave Infrared': ['SR_B7', 'SR_B5', 'SR_B4'],
     'Vegetation Analysis': ['SR_B6', 'SR_B5', 'SR_B4']
 }
+
+REGION_X_DEGREE_WIDTH = 0.08
+REGION_Y_DEGREE_WIDTH = 0.08
+IMG_COLLECTION_START_DATE = '2020-01-01'
+IMG_COLLECTION_END_DATE = '2025-12-31'
 REDUCER_MIN = 2
 REDUCER_MAX = 98
+REDUCER_SCALE = 30
+REDUCER_MAX_PIXELS = 1e13
+GAMMA_ADJUSTMENT = 1.4  # Gamma adjustment for contrast
 
 
 def get_lsatimg(lat, lon):
@@ -23,14 +31,16 @@ def get_lsatimg(lat, lon):
 
     # Define the region (a small rectangle around the city)
     region = ee.Geometry.Rectangle([
-        lon.subtract(0.13), lat.subtract(0.07),
-        lon.add(0.13), lat.add(0.07)
+        lon.subtract(REGION_X_DEGREE_WIDTH),
+        lat.subtract(REGION_Y_DEGREE_WIDTH),
+        lon.add(REGION_X_DEGREE_WIDTH),
+        lat.add(REGION_Y_DEGREE_WIDTH)
     ])
 
     # Use Landsat 8 imagery
     image_collection = ee.ImageCollection(IMAGE_COLLECTION_NAME) \
         .filterBounds(region) \
-        .filterDate('2020-01-01', '2025-12-31') \
+        .filterDate(IMG_COLLECTION_START_DATE, IMG_COLLECTION_END_DATE) \
         .sort('CLOUD_COVER')
 
     image = image_collection.first().clip(region)
@@ -51,7 +61,7 @@ def viz_lsat_img(image, band_comp_str):
         bands=bands,
         min=min_vals,
         max=max_vals,
-        gamma=1.4  # Slight gamma adjustment for contrast
+        gamma=GAMMA_ADJUSTMENT
     )
 
     return normalized_image
@@ -68,8 +78,8 @@ def get_lsatimg_stats(image):
     stats = image.reduceRegion(
         reducer=ee.Reducer.percentile([REDUCER_MIN, REDUCER_MAX]),
         geometry=image.geometry(),
-        scale=30,
-        maxPixels=1e13
+        scale=REDUCER_SCALE,
+        maxPixels=REDUCER_MAX_PIXELS
     )
 
     stats_info = stats.getInfo()
