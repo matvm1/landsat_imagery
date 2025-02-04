@@ -33,28 +33,17 @@ def get_lsatimg(lat, lon):
         .sort('CLOUD_COVER')
 
     image = image_collection.first().clip(region)
+    image.stats = get_lsatimg_stats(image)
 
     return image
 
 
 def viz_lsat_img(image, band_comp_str):
-    # Compute min/max values for normalization using percentiles
-    stats = image.reduceRegion(
-        # Compute 2nd and 98th percentile
-        reducer=ee.Reducer.percentile([2, 98]),
-        geometry=image.geometry(),
-        scale=30,
-        maxPixels=1e13
-    )
-
-    # Get min/max values in a single getInfo() call
-    stats_info = stats.getInfo()
-
     bands = BAND_COMBINATIONS[band_comp_str]
 
     # Get min/max values dynamically
-    min_vals = [stats_info[band + '_p2'] for band in bands]
-    max_vals = [stats_info[band + '_p98'] for band in bands]
+    min_vals = [image.stats[band + '_min'] for band in bands]
+    max_vals = [image.stats[band + '_max'] for band in bands]
 
     # Normalize the image using computed min/max values
     normalized_image = image.visualize(
@@ -72,3 +61,21 @@ def get_lsatimg_url(image):
     url = image.getThumbURL({'region': image.geometry(), 'format': 'png'})
 
     return url
+
+
+def get_lsatimg_stats(image):
+    stats = image.reduceRegion(
+        reducer=ee.Reducer.percentile([2, 98]),
+        geometry=image.geometry(),
+        scale=30,
+        maxPixels=1e13
+    )
+
+    stats_info = stats.getInfo()
+    band_stats = {}
+    for band in [band for combination in BAND_COMBINATIONS.values() for band
+                 in combination]:
+        band_stats[band + '_min'] = stats_info[band + '_p2']
+        band_stats[band + '_max'] = stats_info[band + '_p98']
+
+    return band_stats
