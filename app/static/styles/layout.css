@@ -1,7 +1,6 @@
 body {
     font-family: Arial, sans-serif;
     display: flex;
-    justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
@@ -15,7 +14,10 @@ header a {
     color: #333;
     transition: all 0.2s ease; /* Add transition for smooth hover effect */
 }
-  header a:hover {
+header a:hover {
     color: #007bff; 
     transform: scale(1.05); /* Slightly increase size on hover */
+}
+h2 {
+    text-align: center;
 }
