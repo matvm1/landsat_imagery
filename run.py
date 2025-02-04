@@ -1,7 +1,8 @@
 from dotenv import load_dotenv
 from app import create_app
 from app.services import (init_lsatimg, get_lsatimg, viz_lsat_img,
-                          get_lsatimg_url, get_coords, BAND_COMBINATIONS)
+                          get_lsatimg_url, get_coords, BAND_COMBINATIONS,
+                          IMAGE_COLLECTION_NAME)
 from flask import render_template, redirect, request
 
 
@@ -18,7 +19,8 @@ def index():
 def landsat_image():
     init_lsatimg()
 
-    lat, lon = get_coords(request.args.get('address'))
+    address = request.args.get('address')
+    lat, lon = get_coords(address)
 
     # Check if the coordinates are valid
     if (lat, lon) == (None, None):
@@ -35,6 +37,8 @@ def landsat_image():
                                                 combination)))
 
     return render_template('city_center.html',
+                           image_collection_name=IMAGE_COLLECTION_NAME,
+                           address=address,
                            city_lsatimg_urls=city_lsatimg_urls)
 
 
