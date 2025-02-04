@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>City Center Images</title>
+{% extends "layout.html" %}
+
+{% block title %}Gallery{% endblock %}
+
+{% block extra_stylesheets %}
     <link rel="stylesheet" href="../static/styles/gallery.css">
-    <link rel="stylesheet" href="../static/styles/layout.css">
-</head>
-<body>
-    <header>
-        <h1>City Center Images</h1>
-    </header>
+{% endblock %}
+
+{% block content %}
     <div class="gallery">
         {% for combination_name, url in city_lsatimg_urls.items() %}
             <div>
@@ -19,5 +15,4 @@
             </div>
         {% endfor %}
     </div>
-</body>
-</html>
+{% endblock %}
