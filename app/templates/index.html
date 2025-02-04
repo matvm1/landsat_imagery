@@ -8,9 +8,8 @@
 
 {% block content %}
     <form action="/get_landsat_img" method="GET">
-        <label for="city">Enter City and State:</label>
-        <input type="text" id="city" name="city" required>
-        <input type="text" id="state" name="state" required>
-        <button type="submit">Scan City Center</button>
+        <label for="address">Enter an address:</label>
+        <input type="text" id="address" name="address" placeholder='e.g. "New York, NY" or "Stonehenge" or "1600 Amphitheatre Parkway, Mountain View, CA 94043, US"' required>
+        <button type="submit">See Land Satellite Imagery</button>
     </form>
 {% endblock %}

@@ -18,8 +18,7 @@ def index():
 def landsat_image():
     init_lsatimg()
 
-    lat, lon = get_coords(request.args.get('city'),
-                          request.args.get('state'))
+    lat, lon = get_coords(request.args.get('address'))
 
     # Check if the coordinates are valid
     if (lat, lon) == (None, None):

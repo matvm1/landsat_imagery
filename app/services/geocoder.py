@@ -2,12 +2,12 @@ from os import getenv
 import googlemaps
 
 
-def get_coords(city_name, state):
+def get_coords(address):
     # Initialize the Google Maps client
     gmaps = googlemaps.Client(key=getenv("GOOGLE_MAPS_API_KEY"))
 
     # Geocode the address (fetch the latitude and longitude)
-    geocode_result = gmaps.geocode(f"{city_name}, {state}")
+    geocode_result = gmaps.geocode(f"{address}")
 
     if geocode_result:
         # Extract the latitude and longitude from the response
@@ -16,5 +16,5 @@ def get_coords(city_name, state):
         lng = location['lng']
         return lat, lng
     else:
-        print(f"Could not find coordinates for {city_name}, {state}")
+        print(f"Could not find coordinates for {address}")
         return None, None
