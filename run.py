@@ -12,7 +12,8 @@ app = create_app()
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html',
+                           band_combination_options=BAND_COMBINATIONS)
 
 
 @app.route('/get_landsat_img')

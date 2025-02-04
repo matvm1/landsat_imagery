@@ -10,6 +10,10 @@
     <form action="/get_landsat_img" method="GET">
         <label for="address">Enter an address:</label>
         <input type="text" id="address" name="address" placeholder='e.g. "New York, NY" or "Stonehenge" or "1600 Amphitheatre Parkway, Mountain View, CA 94043, US"' required>
+        {% for band_combination_option in band_combination_options.keys() %}
+            <input type="checkbox" id="band_combination_option_{{ band_combination__option }}" value="{{ band_combination_option }}">
+            <label for="band_combination_option_{{ band_combination__option }}">{{ band_combination_option }}</label>
+        {% endfor %}
         <button type="submit">See Land Satellite Imagery</button>
     </form>
 {% endblock %}
