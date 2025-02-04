@@ -4,11 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>City Center Images</title>
+    <link rel="stylesheet" href="../static/styles/gallery.css">
 </head>
 <body>
-    {% for combination_name, url in city_lsatimg_urls.items() %}
-        <h3>{{ combination_name }}</h3>
-        <img src="{{ url }}" alt="{{ combination_name }} Image" />
-    {% endfor %}
+    <h1>City Center Images</h1>
+    <div class="gallery">
+        {% for combination_name, url in city_lsatimg_urls.items() %}
+            <div>
+                <h3>{{ combination_name }}</h3>
+                <img src="{{ url }}" alt="{{ combination_name }} Image" />
+            </div>
+        {% endfor %}
+    </div>
 </body>
 </html>
