@@ -32,7 +32,7 @@ REDUCER_MAX = 98
 REDUCER_SCALE = 60
 
 # Gamma adjustment for contrast when visualizing
-GAMMA_ADJUSTMENT = 1.4
+GAMMA_ADJUSTMENT = 1.0
 
 
 def get_lsatimg(lat, lon):
