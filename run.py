@@ -26,11 +26,13 @@ def landsat_image():
         print('Could not find the coordinates for the city.')
         return
 
+    lsatimg = get_lsatimg(lat, lon)
+
     city_lsatimg_urls = {}
     for combination in BAND_COMBINATIONS:
         city_lsatimg_urls[combination] = (get_lsatimg_url(
                                             viz_lsat_img(
-                                                get_lsatimg(lat, lon),
+                                                lsatimg,
                                                 combination)))
 
     return render_template('city_center.html',
