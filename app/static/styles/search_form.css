@@ -33,3 +33,21 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap onto the next line */
+    justify-content: center; /* Centers checkboxes horizontally */
+    gap: 10px; /* Adds spacing between checkboxes */
+    margin-bottom: 12px;
+}
+.checkbox-label {
+    display: flex;
+    align-items: center; /* Ensures label text is aligned with checkbox */
+    gap: 5px; /* Adds space between checkbox and label text */
+    padding: 5px 10px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    white-space: nowrap; /* Prevents label text from breaking */
+}
