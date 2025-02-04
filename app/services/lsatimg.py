@@ -13,6 +13,8 @@ BAND_COMBINATIONS = {
     'Shortwave Infrared': ['SR_B7', 'SR_B5', 'SR_B4'],
     'Vegetation Analysis': ['SR_B6', 'SR_B5', 'SR_B4']
 }
+REDUCER_MIN = 2
+REDUCER_MAX = 98
 
 
 def get_lsatimg(lat, lon):
@@ -20,7 +22,6 @@ def get_lsatimg(lat, lon):
     lon = ee.Number(lon)
 
     # Define the region (a small rectangle around the city)
-    # TODO: Refine the region based on the city's area
     region = ee.Geometry.Rectangle([
         lon.subtract(0.13), lat.subtract(0.07),
         lon.add(0.13), lat.add(0.07)
@@ -47,8 +48,8 @@ def viz_lsat_img(image, band_comp_str):
 
     # Normalize the image using computed min/max values
     normalized_image = image.visualize(
-        bands=bands,  # Landsat 8 RGB bands
-        min=min_vals,  # Convert EE values to Python
+        bands=bands,
+        min=min_vals,
         max=max_vals,
         gamma=1.4  # Slight gamma adjustment for contrast
     )
@@ -65,7 +66,7 @@ def get_lsatimg_url(image):
 
 def get_lsatimg_stats(image):
     stats = image.reduceRegion(
-        reducer=ee.Reducer.percentile([2, 98]),
+        reducer=ee.Reducer.percentile([REDUCER_MIN, REDUCER_MAX]),
         geometry=image.geometry(),
         scale=30,
         maxPixels=1e13
@@ -75,7 +76,7 @@ def get_lsatimg_stats(image):
     band_stats = {}
     for band in [band for combination in BAND_COMBINATIONS.values() for band
                  in combination]:
-        band_stats[band + '_min'] = stats_info[band + '_p2']
-        band_stats[band + '_max'] = stats_info[band + '_p98']
+        band_stats[band + '_min'] = stats_info[f"{band}_p{REDUCER_MIN}"]
+        band_stats[band + '_max'] = stats_info[f"{band}_p{REDUCER_MAX}"]
 
     return band_stats
