@@ -1,18 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>City Center Detector</title>
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block extra_stylesheets %}
     <link rel="stylesheet" href="../static/styles/search_form.css">
-    <link rel="stylesheet" href="../static/styles/layout.css">
-</head>
-<body>
+{% endblock %}
+
+{% block content %}
     <form action="/get_landsat_img" method="GET">
         <label for="city">Enter City and State:</label>
         <input type="text" id="city" name="city" required>
         <input type="text" id="state" name="state" required>
         <button type="submit">Scan City Center</button>
     </form>
-</body>
-</html>
+{% endblock %}
