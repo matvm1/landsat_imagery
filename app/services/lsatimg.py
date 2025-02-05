@@ -45,7 +45,6 @@ def init_lsatimg():
         print(f"Error initializing GEE: {e}")
 
 
-
 def get_lsatimg(lat, lon):
     lat = ee.Number(lat)
     lon = ee.Number(lon)
