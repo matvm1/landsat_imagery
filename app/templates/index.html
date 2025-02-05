@@ -12,7 +12,7 @@
         <input type="text" id="address" name="address" placeholder='e.g. "New York, NY" or "Stonehenge" or "1600 Amphitheatre Parkway, Mountain View, CA 94043, US"' required>
 
         <div class="checkbox-group">
-            {% for band_combination_option in band_combination_options.keys() %}
+            {% for band_combination_option in band_combinations.keys() %}
                 <label class="checkbox-label">
                     <input type="checkbox" id="band_combination_option_{{ band_combination_option }}" name="band_combination_option" value="{{ band_combination_option }}" checked>
                     {{ band_combination_option }}

@@ -1,7 +1,8 @@
 from dotenv import load_dotenv
 from app import create_app
 from app.services import (init_lsatimg, get_lsatimg, viz_lsat_img,
-                          get_lsatimg_url, get_coords, LANDSAT_8_BAND_COMBINATIONS,
+                          get_lsatimg_url, get_coords,
+                          LANDSAT_8_BAND_COMBINATIONS,
                           IMAGE_COLLECTION_NAME)
 from flask import render_template, redirect, request
 
@@ -13,7 +14,7 @@ app = create_app()
 @app.route('/')
 def index():
     return render_template('index.html',
-                           band_combination_options=LANDSAT_8_BAND_COMBINATIONS)
+                           band_combinations=LANDSAT_8_BAND_COMBINATIONS)
 
 
 @app.route('/get_landsat_img')
