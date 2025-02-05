@@ -8,16 +8,16 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     overflow: auto;
+    text-align: center;
+}
+a {
+    text-decoration: none;
 }
 header a {
-    text-decoration: none;
     color: #333;
     transition: all 0.2s ease; /* Add transition for smooth hover effect */
 }
 header a:hover {
     color: #007bff; 
     transform: scale(1.05); /* Slightly increase size on hover */
-}
-h2 {
-    text-align: center;
 }
