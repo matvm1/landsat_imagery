@@ -10,6 +10,8 @@ from flask import render_template, redirect, request
 load_dotenv(override=True)
 app = create_app()
 
+VALID_HOMEPAGE_REQUEST_ARGS = ['address', 'band_combination_option']
+
 
 @app.route('/')
 def index():
@@ -30,11 +32,18 @@ def landsat_image():
         return render_template("error.html", error_message=error_message)
 
     lsatimg = get_lsatimg(lat, lon)
+
+    for arg in request.args.keys():
+        if arg not in VALID_HOMEPAGE_REQUEST_ARGS:
+            error_message = f"Request argument {arg} not supported"
+            return render_template("error.html", error_message=error_message)
+
     band_combinations_req = request.args.getlist('band_combination_option')
 
     for user_selection in band_combinations_req:
         if LANDSAT_8_BAND_COMBINATIONS.get(user_selection) is None:
-            raise Exception(f"Band combination {user_selection} is invalid.")
+            error_message = f"Band combination {user_selection} is invalid"
+            return render_template("error.html", error_message=error_message)
 
     city_lsatimg_urls = {}
     for combination in band_combinations_req:
