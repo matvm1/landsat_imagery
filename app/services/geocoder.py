@@ -3,6 +3,19 @@ import googlemaps
 
 
 def get_coords(address):
+    """
+    Fetch the latitude and longitude for a given address using
+    the Google Maps API.
+
+    Google Maps API: https://developers.google.com/maps/documentation/geocoding/start
+
+    Args:
+        address (str): The address to geocode.
+
+    Returns:
+        tuple: A tuple containing latitude (float) and longitude (float),
+        or (None, None) if not found.
+    """
     # Initialize the Google Maps client
     gmaps = googlemaps.Client(key=getenv("GOOGLE_MAPS_API_KEY"))
 
