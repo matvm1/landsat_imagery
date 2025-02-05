@@ -16,5 +16,4 @@ def get_coords(address):
         lng = location['lng']
         return lat, lng
     else:
-        print(f"Could not find coordinates for {address}")
         return None, None

@@ -26,8 +26,8 @@ def landsat_image():
 
     # Check if the coordinates are valid
     if (lat, lon) == (None, None):
-        print('Could not find the coordinates for the city.')
-        return
+        error_message = f"Could not find coordinates for {address}"
+        return render_template("error.html", error_message=error_message)
 
     lsatimg = get_lsatimg(lat, lon)
     band_combinations_req = request.args.getlist('band_combination_option')
