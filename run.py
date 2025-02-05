@@ -29,9 +29,14 @@ def landsat_image():
         return
 
     lsatimg = get_lsatimg(lat, lon)
+    band_combinations_req = request.args.getlist('band_combination_option')
+
+    for user_selection in band_combinations_req:
+        if BAND_COMBINATIONS.get(user_selection) is None:
+            raise Exception(f"Band combination {user_selection} is invalid.")
 
     city_lsatimg_urls = {}
-    for combination in BAND_COMBINATIONS:
+    for combination in band_combinations_req:
         city_lsatimg_urls[combination] = (get_lsatimg_url(
                                             viz_lsat_img(
                                                 lsatimg,
