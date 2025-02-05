@@ -29,7 +29,7 @@ IMG_COLLECTION_END_DATE = '2025-12-31'
 # Reducer options for image color adjustment and resolution
 REDUCER_MIN = 2  # Lower percentile for normalization
 REDUCER_MAX = 98  # Upper percentile for normalization
-REDUCER_SCALE = 60  # Pixel scale for aggregation (smaller -> higher resolution)
+REDUCER_SCALE = 30  # Pixel scale for aggregation (smaller -> higher resolution)
 
 # Gamma adjustment for contrast when visualizing images
 GAMMA_ADJUSTMENT = 1.0
