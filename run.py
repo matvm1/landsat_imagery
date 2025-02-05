@@ -21,7 +21,11 @@ def index():
 
 @app.route('/get_landsat_img')
 def landsat_image():
-    init_lsatimg()
+    try:
+        init_lsatimg()
+    except Exception:
+        error_message = "Failed to authenticate/initialize Google Earth Engine"
+        return render_template("error.html", error_message=error_message)
 
     address = request.args.get('address')
     lat, lon = get_coords(address)
