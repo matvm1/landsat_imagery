@@ -35,6 +35,17 @@ REDUCER_SCALE = 60
 GAMMA_ADJUSTMENT = 1.0
 
 
+def init_lsatimg():
+    """Authenticate and initialize Google Earth Engine."""
+    try:
+        ee.Authenticate()
+        ee.Initialize(project='ee-city-center-detector')
+        print('Google Earth Engine initialized successfully')
+    except Exception as e:
+        print(f"Error initializing GEE: {e}")
+
+
+
 def get_lsatimg(lat, lon):
     lat = ee.Number(lat)
     lon = ee.Number(lon)
