@@ -1,5 +1,5 @@
 import ee
-from os import getenv, environ
+from os import getenv
 
 # Name of the Landsat 8 image collection in Google Earth Engine
 IMAGE_COLLECTION_NAME = 'LANDSAT/LC08/C02/T1_L2'
@@ -46,8 +46,15 @@ def init_lsatimg():
         int: 0 if successful, 1 if error.
     """
     try:
+        # Get the path to the credentials file from the environment variable
+        credentials_path = getenv("GOOGLE_APPLICATION_CREDENTIALS")
+
+        service_account = getenv("GEE_SERVICE_ACCOUNT")
+        # Create the credentials object from the file path
+        credentials = ee.ServiceAccountCredentials(service_account, credentials_path)
+
         # Authenticate with the service account
-        ee.Initialize(project='ee-city-center-detector')
+        ee.Initialize(project='ee-city-center-detector', credentials=credentials)
         print('Google Earth Engine initialized successfully')
         return 0
     except Exception as e:
