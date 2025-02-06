@@ -1,4 +1,5 @@
 import ee
+from os import getenv, environ
 
 # Name of the Landsat 8 image collection in Google Earth Engine
 IMAGE_COLLECTION_NAME = 'LANDSAT/LC08/C02/T1_L2'
@@ -45,7 +46,7 @@ def init_lsatimg():
         int: 0 if successful, 1 if error.
     """
     try:
-        ee.Authenticate()
+        # Authenticate with the service account
         ee.Initialize(project='ee-city-center-detector')
         print('Google Earth Engine initialized successfully')
         return 0
