@@ -28,9 +28,16 @@ def landsat_image():
         return render_template("error.html", error_message=error_message)
 
     address = request.args.get('address')
-    lat, lon = get_coords(address)
 
-    # Check if the coordinates are valid
+    # Fetch the coordinates for the address
+    lat, lon = None, None
+    try:
+        lat, lon = get_coords(address)
+    except Exception:
+        error_message = "Failed to fetch coordinates for the address"
+        return render_template("error.html", error_message=error_message)
+
+    # Check if the address was geocoded successfully
     if (lat, lon) == (None, None):
         error_message = f"Could not find coordinates for {address}"
         return render_template("error.html", error_message=error_message)
