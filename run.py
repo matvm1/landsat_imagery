@@ -21,9 +21,9 @@ def index():
 
 @app.route('/get_landsat_img')
 def landsat_image():
-    try:
-        init_lsatimg()
-    except Exception:
+    gee_init_status = init_lsatimg()
+
+    if gee_init_status != 0:
         error_message = "Failed to authenticate/initialize Google Earth Engine"
         return render_template("error.html", error_message=error_message)
 

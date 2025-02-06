@@ -40,13 +40,18 @@ def init_lsatimg():
     Authenticate and initialize Google Earth Engine (GEE).
 
     GEE API: https://developers.google.com/earth-engine/apidocs
+
+    Returns:
+        int: 0 if successful, 1 if error.
     """
     try:
         ee.Authenticate()
         ee.Initialize(project='ee-city-center-detector')
         print('Google Earth Engine initialized successfully')
+        return 0
     except Exception as e:
         print(f"Error initializing GEE: {e}")
+        return 1
 
 
 def get_lsatimg(lat, lon):
