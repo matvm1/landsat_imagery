@@ -46,13 +46,12 @@ def init_lsatimg():
         int: 0 if successful, 1 if error.
     """
     try:
-        # Get the path to the credentials file from the environment variable
+        # Get credentials .json path and service account email
         credentials_path = getenv("GOOGLE_APPLICATION_CREDENTIALS")
-
         service_account = getenv("GEE_SERVICE_ACCOUNT")
+        
         # Create the credentials object from the file path
         credentials = ee.ServiceAccountCredentials(service_account, credentials_path)
-
         # Authenticate with the service account
         ee.Initialize(project='ee-city-center-detector', credentials=credentials)
         print('Google Earth Engine initialized successfully')
