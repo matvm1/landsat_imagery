@@ -4,18 +4,28 @@ from app.services import (init_lsatimg, get_lsatimg, viz_lsat_img,
                           get_lsatimg_url, get_coords,
                           LANDSAT_8_BAND_COMBINATIONS,
                           IMAGE_COLLECTION_NAME)
-from flask import render_template, redirect, request
+import os
+from flask import render_template, request, session
+from datetime import timedelta
 import logging
 
 
 load_dotenv(override=True)
 app = create_app()
 
+app.config['SECRET_KEY'] = os.getenv('SESSION_KEY')
+app.config['SESSION_PERMANENT'] = False
+# Expire after 30 minutes
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=30)
+
+
 VALID_HOMEPAGE_REQUEST_ARGS = ['address', 'band_combination_option']
 
 
 @app.route('/')
 def index():
+    session.pop('lsatimg', None)
+
     return render_template('index.html',
                            band_combinations=LANDSAT_8_BAND_COMBINATIONS)
 
@@ -45,6 +55,7 @@ def landsat_image():
         return render_template("error.html", error_message=error_message)
 
     lsatimg = get_lsatimg(lat, lon)
+    session['lsatimg'] = lsatimg.stats
 
     for arg in request.args.keys():
         if arg not in VALID_HOMEPAGE_REQUEST_ARGS:
