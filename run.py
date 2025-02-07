@@ -27,8 +27,7 @@ VALID_HOMEPAGE_REQUEST_ARGS = ['address', 'band_combination_option']
 
 @app.route('/')
 def index():
-    session.pop('lsatimg', None)
-    session.pop('lsatimg_address', None)
+    clear_session()
 
     return render_template('index.html',
                            band_combinations=LANDSAT_8_BAND_COMBINATIONS)
@@ -80,6 +79,7 @@ def landsat_image():
                                             viz_lsat_img(
                                                 lsatimg,
                                                 combination)))
+        session['lsatimg_urls'] = lsatimg_urls
 
     return render_template('city_center.html',
                            image_collection_name=IMAGE_COLLECTION_NAME,
@@ -111,6 +111,12 @@ def download_lsatimg_info():
         logging.exception(e)
         error_message = "Failed to download Landsat 8 image info"
         return render_template("error.html", error_message=error_message)
+
+
+def clear_session():
+    session.pop('lsatimg', None)
+    session.pop('lsatimg_address', None)
+    session.pop('lsatimg_urls', None)
 
 
 if __name__ == '__main__':
