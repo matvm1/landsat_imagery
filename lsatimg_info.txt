@@ -1,0 +1,623 @@
+{
+    "bands": [
+        {
+            "crs": "EPSG:32630",
+            "crs_transform": [
+                30,
+                0,
+                516585,
+                0,
+                -30,
+                5846715
+            ],
+            "data_type": {
+                "max": 65535,
+                "min": 0,
+                "precision": "int",
+                "type": "PixelType"
+            },
+            "dimensions": [
+                383,
+                600
+            ],
+            "id": "SR_B1",
+            "origin": [
+                1991,
+                5578
+            ]
+        },
+        {
+            "crs": "EPSG:32630",
+            "crs_transform": [
+                30,
+                0,
+                516585,
+                0,
+                -30,
+                5846715
+            ],
+            "data_type": {
+                "max": 65535,
+                "min": 0,
+                "precision": "int",
+                "type": "PixelType"
+            },
+            "dimensions": [
+                383,
+                600
+            ],
+            "id": "SR_B2",
+            "origin": [
+                1991,
+                5578
+            ]
+        },
+        {
+            "crs": "EPSG:32630",
+            "crs_transform": [
+                30,
+                0,
+                516585,
+                0,
+                -30,
+                5846715
+            ],
+            "data_type": {
+                "max": 65535,
+                "min": 0,
+                "precision": "int",
+                "type": "PixelType"
+            },
+            "dimensions": [
+                383,
+                600
+            ],
+            "id": "SR_B3",
+            "origin": [
+                1991,
+                5578
+            ]
+        },
+        {
+            "crs": "EPSG:32630",
+            "crs_transform": [
+                30,
+                0,
+                516585,
+                0,
+                -30,
+                5846715
+            ],
+            "data_type": {
+                "max": 65535,
+                "min": 0,
+                "precision": "int",
+                "type": "PixelType"
+            },
+            "dimensions": [
+                383,
+                600
+            ],
+            "id": "SR_B4",
+            "origin": [
+                1991,
+                5578
+            ]
+        },
+        {
+            "crs": "EPSG:32630",
+            "crs_transform": [
+                30,
+                0,
+                516585,
+                0,
+                -30,
+                5846715
+            ],
+            "data_type": {
+                "max": 65535,
+                "min": 0,
+                "precision": "int",
+                "type": "PixelType"
+            },
+            "dimensions": [
+                383,
+                600
+            ],
+            "id": "SR_B5",
+            "origin": [
+                1991,
+                5578
+            ]
+        },
+        {
+            "crs": "EPSG:32630",
+            "crs_transform": [
+                30,
+                0,
+                516585,
+                0,
+                -30,
+                5846715
+            ],
+            "data_type": {
+                "max": 65535,
+                "min": 0,
+                "precision": "int",
+                "type": "PixelType"
+            },
+            "dimensions": [
+                383,
+                600
+            ],
+            "id": "SR_B6",
+            "origin": [
+                1991,
+                5578
+            ]
+        },
+        {
+            "crs": "EPSG:32630",
+            "crs_transform": [
+                30,
+                0,
+                516585,
+                0,
+                -30,
+                5846715
+            ],
+            "data_type": {
+                "max": 65535,
+                "min": 0,
+                "precision": "int",
+                "type": "PixelType"
+            },
+            "dimensions": [
+                383,
+                600
+            ],
+            "id": "SR_B7",
+            "origin": [
+                1991,
+                5578
+            ]
+        },
+        {
+            "crs": "EPSG:32630",
+            "crs_transform": [
+                30,
+                0,
+                516585,
+                0,
+                -30,
+                5846715
+            ],
+            "data_type": {
+                "max": 255,
+                "min": 0,
+                "precision": "int",
+                "type": "PixelType"
+            },
+            "dimensions": [
+                383,
+                600
+            ],
+            "id": "SR_QA_AEROSOL",
+            "origin": [
+                1991,
+                5578
+            ]
+        },
+        {
+            "crs": "EPSG:32630",
+            "crs_transform": [
+                30,
+                0,
+                516585,
+                0,
+                -30,
+                5846715
+            ],
+            "data_type": {
+                "max": 65535,
+                "min": 0,
+                "precision": "int",
+                "type": "PixelType"
+            },
+            "dimensions": [
+                383,
+                600
+            ],
+            "id": "ST_B10",
+            "origin": [
+                1991,
+                5578
+            ]
+        },
+        {
+            "crs": "EPSG:32630",
+            "crs_transform": [
+                30,
+                0,
+                516585,
+                0,
+                -30,
+                5846715
+            ],
+            "data_type": {
+                "max": 32767,
+                "min": -32768,
+                "precision": "int",
+                "type": "PixelType"
+            },
+            "dimensions": [
+                383,
+                600
+            ],
+            "id": "ST_ATRAN",
+            "origin": [
+                1991,
+                5578
+            ]
+        },
+        {
+            "crs": "EPSG:32630",
+            "crs_transform": [
+                30,
+                0,
+                516585,
+                0,
+                -30,
+                5846715
+            ],
+            "data_type": {
+                "max": 32767,
+                "min": -32768,
+                "precision": "int",
+                "type": "PixelType"
+            },
+            "dimensions": [
+                383,
+                600
+            ],
+            "id": "ST_CDIST",
+            "origin": [
+                1991,
+                5578
+            ]
+        },
+        {
+            "crs": "EPSG:32630",
+            "crs_transform": [
+                30,
+                0,
+                516585,
+                0,
+                -30,
+                5846715
+            ],
+            "data_type": {
+                "max": 32767,
+                "min": -32768,
+                "precision": "int",
+                "type": "PixelType"
+            },
+            "dimensions": [
+                383,
+                600
+            ],
+            "id": "ST_DRAD",
+            "origin": [
+                1991,
+                5578
+            ]
+        },
+        {
+            "crs": "EPSG:32630",
+            "crs_transform": [
+                30,
+                0,
+                516585,
+                0,
+                -30,
+                5846715
+            ],
+            "data_type": {
+                "max": 32767,
+                "min": -32768,
+                "precision": "int",
+                "type": "PixelType"
+            },
+            "dimensions": [
+                383,
+                600
+            ],
+            "id": "ST_EMIS",
+            "origin": [
+                1991,
+                5578
+            ]
+        },
+        {
+            "crs": "EPSG:32630",
+            "crs_transform": [
+                30,
+                0,
+                516585,
+                0,
+                -30,
+                5846715
+            ],
+            "data_type": {
+                "max": 32767,
+                "min": -32768,
+                "precision": "int",
+                "type": "PixelType"
+            },
+            "dimensions": [
+                383,
+                600
+            ],
+            "id": "ST_EMSD",
+            "origin": [
+                1991,
+                5578
+            ]
+        },
+        {
+            "crs": "EPSG:32630",
+            "crs_transform": [
+                30,
+                0,
+                516585,
+                0,
+                -30,
+                5846715
+            ],
+            "data_type": {
+                "max": 32767,
+                "min": -32768,
+                "precision": "int",
+                "type": "PixelType"
+            },
+            "dimensions": [
+                383,
+                600
+            ],
+            "id": "ST_QA",
+            "origin": [
+                1991,
+                5578
+            ]
+        },
+        {
+            "crs": "EPSG:32630",
+            "crs_transform": [
+                30,
+                0,
+                516585,
+                0,
+                -30,
+                5846715
+            ],
+            "data_type": {
+                "max": 32767,
+                "min": -32768,
+                "precision": "int",
+                "type": "PixelType"
+            },
+            "dimensions": [
+                383,
+                600
+            ],
+            "id": "ST_TRAD",
+            "origin": [
+                1991,
+                5578
+            ]
+        },
+        {
+            "crs": "EPSG:32630",
+            "crs_transform": [
+                30,
+                0,
+                516585,
+                0,
+                -30,
+                5846715
+            ],
+            "data_type": {
+                "max": 32767,
+                "min": -32768,
+                "precision": "int",
+                "type": "PixelType"
+            },
+            "dimensions": [
+                383,
+                600
+            ],
+            "id": "ST_URAD",
+            "origin": [
+                1991,
+                5578
+            ]
+        },
+        {
+            "crs": "EPSG:32630",
+            "crs_transform": [
+                30,
+                0,
+                516585,
+                0,
+                -30,
+                5846715
+            ],
+            "data_type": {
+                "max": 65535,
+                "min": 0,
+                "precision": "int",
+                "type": "PixelType"
+            },
+            "dimensions": [
+                383,
+                600
+            ],
+            "id": "QA_PIXEL",
+            "origin": [
+                1991,
+                5578
+            ]
+        },
+        {
+            "crs": "EPSG:32630",
+            "crs_transform": [
+                30,
+                0,
+                516585,
+                0,
+                -30,
+                5846715
+            ],
+            "data_type": {
+                "max": 65535,
+                "min": 0,
+                "precision": "int",
+                "type": "PixelType"
+            },
+            "dimensions": [
+                383,
+                600
+            ],
+            "id": "QA_RADSAT",
+            "origin": [
+                1991,
+                5578
+            ]
+        }
+    ],
+    "id": "LANDSAT/LC08/C02/T1_L2/LC08_202024_20200625",
+    "properties": {
+        "ALGORITHM_SOURCE_SURFACE_REFLECTANCE": "LaSRC_1.5.0",
+        "ALGORITHM_SOURCE_SURFACE_TEMPERATURE": "st_1.3.0",
+        "CLOUD_COVER": 0.01,
+        "CLOUD_COVER_LAND": 0.01,
+        "COLLECTION_CATEGORY": "T1",
+        "COLLECTION_NUMBER": 2,
+        "DATA_SOURCE_AIR_TEMPERATURE": "MODIS",
+        "DATA_SOURCE_ELEVATION": "GLS2000",
+        "DATA_SOURCE_OZONE": "MODIS",
+        "DATA_SOURCE_PRESSURE": "Calculated",
+        "DATA_SOURCE_REANALYSIS": "GEOS-5 FP-IT",
+        "DATA_SOURCE_TIRS_STRAY_LIGHT_CORRECTION": "TIRS",
+        "DATA_SOURCE_WATER_VAPOR": "MODIS",
+        "DATE_ACQUIRED": "2020-06-25",
+        "DATE_PRODUCT_GENERATED": 1598216262000,
+        "DATUM": "WGS84",
+        "EARTH_SUN_DISTANCE": 1.0165365,
+        "ELLIPSOID": "WGS84",
+        "GEOMETRIC_RMSE_MODEL": 6.138,
+        "GEOMETRIC_RMSE_MODEL_X": 4.206,
+        "GEOMETRIC_RMSE_MODEL_Y": 4.471,
+        "GEOMETRIC_RMSE_VERIFY": 4.147,
+        "GRID_CELL_SIZE_REFLECTIVE": 30,
+        "GRID_CELL_SIZE_THERMAL": 30,
+        "GROUND_CONTROL_POINTS_MODEL": 912,
+        "GROUND_CONTROL_POINTS_VERIFY": 241,
+        "GROUND_CONTROL_POINTS_VERSION": 5,
+        "IMAGE_QUALITY_OLI": 9,
+        "IMAGE_QUALITY_TIRS": 9,
+        "L1_DATE_PRODUCT_GENERATED": "2020-08-23T20:49:03Z",
+        "L1_LANDSAT_PRODUCT_ID": "LC08_L1TP_202024_20200625_20200823_02_T1",
+        "L1_PROCESSING_LEVEL": "L1TP",
+        "L1_PROCESSING_SOFTWARE_VERSION": "LPGS_15.3.1c",
+        "L1_REQUEST_ID": "L2",
+        "LANDSAT_PRODUCT_ID": "LC08_L2SP_202024_20200625_20200823_02_T1",
+        "LANDSAT_SCENE_ID": "LC82020242020177LGN00",
+        "MAP_PROJECTION": "UTM",
+        "NADIR_OFFNADIR": "NADIR",
+        "ORIENTATION": "NORTH_UP",
+        "PROCESSING_LEVEL": "L2SP",
+        "PROCESSING_SOFTWARE_VERSION": "LPGS_15.3.1c",
+        "REFLECTANCE_ADD_BAND_1": -0.2,
+        "REFLECTANCE_ADD_BAND_2": -0.2,
+        "REFLECTANCE_ADD_BAND_3": -0.2,
+        "REFLECTANCE_ADD_BAND_4": -0.2,
+        "REFLECTANCE_ADD_BAND_5": -0.2,
+        "REFLECTANCE_ADD_BAND_6": -0.2,
+        "REFLECTANCE_ADD_BAND_7": -0.2,
+        "REFLECTANCE_MULT_BAND_1": 2.75e-05,
+        "REFLECTANCE_MULT_BAND_2": 2.75e-05,
+        "REFLECTANCE_MULT_BAND_3": 2.75e-05,
+        "REFLECTANCE_MULT_BAND_4": 2.75e-05,
+        "REFLECTANCE_MULT_BAND_5": 2.75e-05,
+        "REFLECTANCE_MULT_BAND_6": 2.75e-05,
+        "REFLECTANCE_MULT_BAND_7": 2.75e-05,
+        "REFLECTIVE_LINES": 7901,
+        "REFLECTIVE_SAMPLES": 7801,
+        "REQUEST_ID": "L2",
+        "ROLL_ANGLE": -0.001,
+        "SATURATION_BAND_1": "Y",
+        "SATURATION_BAND_2": "Y",
+        "SATURATION_BAND_3": "Y",
+        "SATURATION_BAND_4": "Y",
+        "SATURATION_BAND_5": "Y",
+        "SATURATION_BAND_6": "Y",
+        "SATURATION_BAND_7": "Y",
+        "SATURATION_BAND_8": "N",
+        "SATURATION_BAND_9": "N",
+        "SCENE_CENTER_TIME": "10:58:18.7021509Z",
+        "SENSOR_ID": "OLI_TIRS",
+        "SPACECRAFT_ID": "LANDSAT_8",
+        "STATION_ID": "LGN",
+        "SUN_AZIMUTH": 148.49514975,
+        "SUN_ELEVATION": 58.74287559,
+        "TARGET_WRS_PATH": 202,
+        "TARGET_WRS_ROW": 24,
+        "TEMPERATURE_ADD_BAND_ST_B10": 149,
+        "TEMPERATURE_MAXIMUM_BAND_ST_B10": 372.999941,
+        "TEMPERATURE_MINIMUM_BAND_ST_B10": 149.003418,
+        "TEMPERATURE_MULT_BAND_ST_B10": 0.00341802,
+        "THERMAL_LINES": 7901,
+        "THERMAL_SAMPLES": 7801,
+        "TIRS_SSM_MODEL": "FINAL",
+        "TIRS_SSM_POSITION_STATUS": "ESTIMATED",
+        "TRUNCATION_OLI": "UPPER",
+        "UTM_ZONE": 30,
+        "WRS_PATH": 202,
+        "WRS_ROW": 24,
+        "WRS_TYPE": 2,
+        "system:asset_size": 962822440,
+        "system:footprint": {
+            "coordinates": [
+                [
+                    [
+                        -1.9062149999999998,
+                        51.09888199999999
+                    ],
+                    [
+                        -1.7462149999999999,
+                        51.09888199999999
+                    ],
+                    [
+                        -1.746215,
+                        51.258881999999986
+                    ],
+                    [
+                        -1.9062150000000002,
+                        51.258881999999986
+                    ],
+                    [
+                        -1.9062149999999998,
+                        51.09888199999999
+                    ]
+                ]
+            ],
+            "type": "Polygon"
+        },
+        "system:index": "LC08_202024_20200625",
+        "system:time_end": 1593082698702,
+        "system:time_start": 1593082698702
+    },
+    "type": "Image",
+    "version": 1629855402952844
+}

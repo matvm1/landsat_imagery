@@ -5,9 +5,12 @@ from app.services import (init_lsatimg, get_lsatimg, viz_lsat_img,
                           LANDSAT_8_BAND_COMBINATIONS,
                           IMAGE_COLLECTION_NAME)
 import os
-from flask import render_template, request, session
-from datetime import timedelta
+from flask import render_template, request, session, send_file
 import logging
+import datetime
+import io
+import json
+import locale
 
 
 load_dotenv(override=True)
@@ -16,7 +19,7 @@ app = create_app()
 app.config['SECRET_KEY'] = os.getenv('SESSION_KEY')
 app.config['SESSION_PERMANENT'] = False
 # Expire after 30 minutes
-app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=30)
+app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(minutes=30)
 
 
 VALID_HOMEPAGE_REQUEST_ARGS = ['address', 'band_combination_option']
@@ -80,6 +83,24 @@ def landsat_image():
                            image_collection_name=IMAGE_COLLECTION_NAME,
                            address=address,
                            city_lsatimg_urls=city_lsatimg_urls)
+
+
+@app.route('/download_lsatimg_info')
+def download_lsatimg_info():
+    lsatimg = session.get('lsatimg')
+    if lsatimg is None:
+        error_message = "No Landsat 8 image information found"
+        return render_template("error.html", error_message=error_message)
+
+    output = io.BytesIO()
+    json_data = json.dumps(lsatimg, indent=4)
+    encoded_json_data = json_data.encode(locale.getpreferredencoding())
+    output.write(encoded_json_data)
+    output.seek(0)
+
+    download_name = f"lsat8_img_info_{datetime.datetime.now().isoformat()}.json"
+
+    return send_file(output, as_attachment=True, mimetype='text/plain', download_name=download_name)
 
 
 if __name__ == '__main__':
