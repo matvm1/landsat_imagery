@@ -11,16 +11,17 @@ import datetime
 import io
 import json
 import locale
+import zipfile
+import requests
 
 
 load_dotenv(override=True)
-app = create_app()
 
+app = create_app()
 app.config['SECRET_KEY'] = os.getenv('SESSION_KEY')
 app.config['SESSION_PERMANENT'] = False
 # Expire after 30 minutes
 app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(minutes=30)
-
 
 VALID_HOMEPAGE_REQUEST_ARGS = ['address', 'band_combination_option']
 
@@ -103,6 +104,8 @@ def download_lsatimg_info():
         output.seek(0)
 
         curr_datetime = datetime.datetime.now().isoformat()
+        address = address.replace("/", "_")
+        curr_datetime = curr_datetime.replace("/", "_")
         download_name = f"lsat8_img_info_{address}_{curr_datetime}.json"
 
         return send_file(output, as_attachment=True, mimetype='text/json',
@@ -110,6 +113,38 @@ def download_lsatimg_info():
     except Exception as e:
         logging.exception(e)
         error_message = "Failed to download Landsat 8 image info"
+        return render_template("error.html", error_message=error_message)
+
+
+@app.route('/download_lsatimg_images')
+def download_lsatimg_images():
+    lsatimg_urls = session.get('lsatimg_urls')
+    address = session.get('lsatimg_address')
+    if lsatimg_urls is None or address is None:
+        error_message = "Failed to get session data for Landsat 8 image URLs"
+        logging.error(error_message)
+        return render_template("error.html", error_message=error_message)
+
+    try:
+        output = io.BytesIO()
+        with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED) as zipf:
+            for combination, url in lsatimg_urls.items():
+                address = address.replace("/", "_")
+                combination = combination.replace("/", "_")
+                img = requests.get(url)
+                zipf.writestr(f"{address}_{combination}.png",
+                              img.content)
+        output.seek(0)
+
+        curr_datetime = datetime.datetime.now().isoformat()
+        download_name = f"lsat8_img_{address}_{curr_datetime}.zip"
+
+        return send_file(output, as_attachment=True,
+                         mimetype='application/zip',
+                         download_name=download_name)
+    except Exception as e:
+        logging.exception(e)
+        error_message = "Failed to download Landsat 8 images"
         return render_template("error.html", error_message=error_message)
 
 
