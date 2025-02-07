@@ -1,5 +1,6 @@
 import ee
 from os import getenv
+import logging
 
 # Name of the Landsat 8 image collection in Google Earth Engine
 IMAGE_COLLECTION_NAME = 'LANDSAT/LC08/C02/T1_L2'
@@ -57,6 +58,7 @@ def init_lsatimg():
         print('Google Earth Engine initialized successfully')
         return 0
     except Exception as e:
+        logging.exception(e)
         print(f"Error initializing GEE: {e}")
         return 1
 

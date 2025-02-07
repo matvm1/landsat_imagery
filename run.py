@@ -5,6 +5,7 @@ from app.services import (init_lsatimg, get_lsatimg, viz_lsat_img,
                           LANDSAT_8_BAND_COMBINATIONS,
                           IMAGE_COLLECTION_NAME)
 from flask import render_template, redirect, request
+import logging
 
 
 load_dotenv(override=True)
@@ -33,7 +34,8 @@ def landsat_image():
     lat, lon = None, None
     try:
         lat, lon = get_coords(address)
-    except Exception:
+    except Exception as e:
+        logging.exception(e)
         error_message = "Failed to fetch coordinates for the address"
         return render_template("error.html", error_message=error_message)
 
