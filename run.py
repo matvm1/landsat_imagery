@@ -84,23 +84,29 @@ def landsat_image():
                            address=address,
                            city_lsatimg_urls=city_lsatimg_urls)
 
-
 @app.route('/download_lsatimg_info')
 def download_lsatimg_info():
     lsatimg = session.get('lsatimg')
     if lsatimg is None:
-        error_message = "No Landsat 8 image information found"
+        error_message = "Failed to get session data for Landsat 8 image"
+        logging.error(error_message)
         return render_template("error.html", error_message=error_message)
 
-    output = io.BytesIO()
-    json_data = json.dumps(lsatimg, indent=4)
-    encoded_json_data = json_data.encode(locale.getpreferredencoding())
-    output.write(encoded_json_data)
-    output.seek(0)
+    try:
+        output = io.BytesIO()
+        json_data = json.dumps(lsatimg, indent=4)
+        encoded_json_data = json_data.encode(locale.getpreferredencoding())
+        output.write(encoded_json_data)
+        output.seek(0)
 
-    download_name = f"lsat8_img_info_{datetime.datetime.now().isoformat()}.json"
+        download_name = f"lsat8_img_info_{datetime.datetime.now().isoformat()}.json"
 
-    return send_file(output, as_attachment=True, mimetype='text/plain', download_name=download_name)
+        return send_file(output, as_attachment=True, mimetype='text/json',
+                  download_name=download_name)
+    except Exception as e:
+        logging.exception(e)
+        error_message = "Failed to download Landsat 8 image info"
+        return render_template("error.html", error_message=error_message)
 
 
 if __name__ == '__main__':

@@ -9,6 +9,9 @@
 {% block content %}
     <h2>{{ image_collection_name }}</h2>
     <h2>{{ address }}</h2>
+    <form action="/download_lsatimg_info" method="GET">
+        <button id="download_lsatimg_info_btn" type="submit">Download Imagery Metadata</button>
+    </form>
     <div class="gallery">
         {% for combination_name, url in city_lsatimg_urls.items() %}
             <div>
@@ -19,4 +22,5 @@
             </div>
         {% endfor %}
     </div>
+    
 {% endblock %}
