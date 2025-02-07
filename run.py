@@ -74,9 +74,9 @@ def landsat_image():
             error_message = f"Band combination {user_selection} is invalid"
             return render_template("error.html", error_message=error_message)
 
-    city_lsatimg_urls = {}
+    lsatimg_urls = {}
     for combination in band_combinations_req:
-        city_lsatimg_urls[combination] = (get_lsatimg_url(
+        lsatimg_urls[combination] = (get_lsatimg_url(
                                             viz_lsat_img(
                                                 lsatimg,
                                                 combination)))
@@ -84,7 +84,7 @@ def landsat_image():
     return render_template('city_center.html',
                            image_collection_name=IMAGE_COLLECTION_NAME,
                            address=address,
-                           city_lsatimg_urls=city_lsatimg_urls)
+                           lsatimg_urls=lsatimg_urls)
 
 @app.route('/download_lsatimg_info')
 def download_lsatimg_info():
