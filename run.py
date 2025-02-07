@@ -28,6 +28,7 @@ VALID_HOMEPAGE_REQUEST_ARGS = ['address', 'band_combination_option']
 @app.route('/')
 def index():
     session.pop('lsatimg', None)
+    session.pop('lsatimg_address', None)
 
     return render_template('index.html',
                            band_combinations=LANDSAT_8_BAND_COMBINATIONS)
@@ -59,6 +60,7 @@ def landsat_image():
 
     lsatimg = get_lsatimg(lat, lon)
     session['lsatimg'] = get_lsatimg_info(lsatimg)
+    session['lsatimg_address'] = address
 
     for arg in request.args.keys():
         if arg not in VALID_HOMEPAGE_REQUEST_ARGS:
@@ -87,7 +89,8 @@ def landsat_image():
 @app.route('/download_lsatimg_info')
 def download_lsatimg_info():
     lsatimg = session.get('lsatimg')
-    if lsatimg is None:
+    address = session.get('lsatimg_address')
+    if lsatimg is None or address is None:
         error_message = "Failed to get session data for Landsat 8 image"
         logging.error(error_message)
         return render_template("error.html", error_message=error_message)
@@ -99,10 +102,11 @@ def download_lsatimg_info():
         output.write(encoded_json_data)
         output.seek(0)
 
-        download_name = f"lsat8_img_info_{datetime.datetime.now().isoformat()}.json"
+        curr_datetime = datetime.datetime.now().isoformat()
+        download_name = f"lsat8_img_info_{address}_{curr_datetime}.json"
 
         return send_file(output, as_attachment=True, mimetype='text/json',
-                  download_name=download_name)
+                         download_name=download_name)
     except Exception as e:
         logging.exception(e)
         error_message = "Failed to download Landsat 8 image info"
