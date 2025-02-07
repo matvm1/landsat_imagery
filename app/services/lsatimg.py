@@ -50,7 +50,7 @@ def init_lsatimg():
         # Get credentials .json path and service account email
         credentials_path = getenv("GOOGLE_APPLICATION_CREDENTIALS")
         service_account = getenv("GEE_SERVICE_ACCOUNT")
-        
+
         # Create the credentials object from the file path
         credentials = ee.ServiceAccountCredentials(service_account, credentials_path)
         # Authenticate with the service account
@@ -176,3 +176,25 @@ def get_lsatimg_stats(image):
         band_stats[band + '_max'] = stats_info[f"{band}_p{REDUCER_MAX}"]
 
     return band_stats
+
+
+def get_lsatimg_info(image):
+    """
+    Retrieves metadata information for a given ee.Image.
+
+    Args:
+        image: An ee.Image object.
+
+    Returns:
+        dict or None: A dictionary containing image metadata if successful, 
+                      or None if an error occurs.
+    """
+    info = None
+
+    try:
+        info = image.getInfo()
+    except Exception as e:
+        logging.exception(e)
+        print(f"Error fetching image info: {e}")
+
+    return info

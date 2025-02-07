@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 from app import create_app
 from app.services import (init_lsatimg, get_lsatimg, viz_lsat_img,
-                          get_lsatimg_url, get_coords,
+                          get_lsatimg_url, get_lsatimg_info, get_coords,
                           LANDSAT_8_BAND_COMBINATIONS,
                           IMAGE_COLLECTION_NAME)
 import os
@@ -55,7 +55,7 @@ def landsat_image():
         return render_template("error.html", error_message=error_message)
 
     lsatimg = get_lsatimg(lat, lon)
-    session['lsatimg'] = lsatimg.stats
+    session['lsatimg'] = get_lsatimg_info(lsatimg)
 
     for arg in request.args.keys():
         if arg not in VALID_HOMEPAGE_REQUEST_ARGS:
