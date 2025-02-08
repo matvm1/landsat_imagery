@@ -9,12 +9,14 @@
 {% block content %}
     <h2>{{ image_collection_name }}</h2>
     <h2>{{ address }}</h2>
-    <form action="/download_lsatimg_info" method="GET">
-        <button id="download_lsatimg_info_btn" type="submit">Download Imagery Metadata</button>
-    </form>
-    <form action="/download_lsatimg_images" method="GET">
-        <button id="download_lsatimg_info_btn" type="submit">Download Images</button>
-    </form>
+    <div class="btn-container">
+        <form action="/download_lsatimg_info" method="GET">
+            <button type="submit">Download Imagery Metadata</button>
+        </form>
+        <form action="/download_lsatimg_images" method="GET">
+            <button type="submit">Download Images</button>
+        </form>
+    </div>
     <div class="gallery">
         {% for combination_name, url in lsatimg_urls.items() %}
             <div>
