@@ -56,4 +56,4 @@ Once cloned, create a .env file in the project root with the following variables
 - `FLASK_APP` = `run.py`
 - `FLASK_DEBUG` = 1 (Note: only needed when running in development)
 
-A Google Cloud project is required, along with an API Key for the Geocoding API and a service account and service account key for the Earth Engine API.
+A Google Cloud project is required, along with an API Key for the Geocoding API and a service account and service account key for the Earth Engine API. The service account key must be stored in the path assigned to GOOGLE_APPLICATION_CREDENTIAL in the .env file.
