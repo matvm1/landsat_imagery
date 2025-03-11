@@ -9,13 +9,12 @@
 {% block content %}
     <form action="/get_landsat_img" method="GET">
         <label for="address">Enter an address:</label>
-        <input type="text" id="address" name="address" placeholder='e.g. "New York, NY" or "Stonehenge" or "1600 Amphitheatre Parkway, Mountain View, CA 94043, US"' required>
-
+        <input type="text" id="address" name="address" placeholder='e.g. "New York, NY" or "Stonehenge"' required>
         <div class="checkbox-group">
             {% for band_combination_option in band_combinations.keys() %}
                 <label class="checkbox-label">
                     <input type="checkbox" id="band_combination_option_{{ band_combination_option }}" name="band_combination_option" value="{{ band_combination_option }}" checked>
-                    {{ band_combination_option }}
+                    <span>{{ band_combination_option }}</span>
                 </label>
             {% endfor %}
         </div>
