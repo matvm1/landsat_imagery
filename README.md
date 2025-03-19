@@ -1,4 +1,4 @@
-# Land Satellite Image Lookup
+# Land Satellite Image Search
 
 ## Demo
 [Youtube](https://youtu.be/EEfUkP8MxIY)
