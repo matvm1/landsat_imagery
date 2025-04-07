@@ -1,8 +1,5 @@
 # Land Satellite Image Search
 
-## Demo
-[Youtube](https://youtu.be/EEfUkP8MxIY)
-
 ## Description
 This project enables analysts and researchers to view land satellite image captures in multiple visual wavelengths.
 The arrangement of different spectral bands allows them to view this image capture in the following representations:
