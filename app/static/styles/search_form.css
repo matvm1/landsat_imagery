@@ -1,9 +1,9 @@
 /* Base font size for consistency */
 body {
     font-size: 16px;
-}
-
-form {
+  }
+  
+  form {
     background-color: #fff;
     padding: 15px;
     border-radius: 8px;
@@ -12,43 +12,43 @@ form {
     max-width: 800px;
     text-align: center;
     box-sizing: border-box;
-}
-
-label {
+  }
+  
+  label {
     font-size: 1em; /* Matches body */
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     display: block;
-}
-
-input[type="text"] {
+  }
+  
+  input[type="text"] {
     width: 100%;
     padding: 10px;
-    margin-bottom: 12px;
+    margin-bottom: 6px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1em;
     box-sizing: border-box;
-}
-
-.checkbox-group {
+  }
+  
+  .checkbox-group {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 6px;
-    margin-bottom: 12px;
+    margin-bottom: 3px;
     width: 100%;
     box-sizing: border-box;
-}
-
-/* Hide the actual checkbox input */
-.checkbox-label input[type="checkbox"] {
+  }
+  
+  /* Hide the actual checkbox input */
+  .checkbox-label input[type="checkbox"] {
     display: none;
-}
-
-.checkbox-label {
+  }
+  
+  .checkbox-label {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 8px 4px;
+    padding: 4px 4px;
     background: #f8f9fa;
     border-radius: 4px;
     border: 1px solid #ccc;
@@ -59,22 +59,22 @@ input[type="text"] {
     min-height: 40px;
     word-break: break-word;
     hyphens: auto;
-}
-
-/* Style for selected checkbox */
-.checkbox-label input[type="checkbox"]:checked + span {
+  }
+  
+  /* Style for selected checkbox */
+  .checkbox-label input[type="checkbox"]:checked + span {
     color: #fff;
-}
-
-/* Apply background to the label when checkbox is checked */
-input[type="checkbox"]:checked ~ .checkbox-label,
-.checkbox-label:has(input[type="checkbox"]:checked) {
+  }
+  
+  /* Apply background to the label when checkbox is checked */
+  input[type="checkbox"]:checked ~ .checkbox-label,
+  .checkbox-label:has(input[type="checkbox"]:checked) {
     background-color: #007BFF;
     border-color: #0056b3;
     color: white;
-}
-
-button[type="submit"] {
+  }
+  
+  button[type="submit"] {
     padding: 10px 20px;
     font-size: 1em;
     color: #fff;
@@ -83,10 +83,12 @@ button[type="submit"] {
     border-radius: 4px;
     cursor: pointer;
     width: 100%;
-}
-
-button[type="toggle-all"] {
-    padding: 10px 20px;
+  }
+  
+  button[type="toggle-all"] {
+    /* Updated to match checkbox styles */
+    display: block; /* Changed to block for centering with margin auto */
+    padding: 4px 4px;
     min-height: 40px;
     font-size: 1em;
     color: #FFF;
@@ -94,59 +96,70 @@ button[type="toggle-all"] {
     border: 1px solid #0056b3;
     border-radius: 4px;
     cursor: pointer;
-    width: 33%;
-}
-
-button:hover {
+    text-align: center;
+    /* Making it wider and centered */
+    width: 30%;
+    margin: 0 auto 6px auto; /* top right bottom left - added bottom margin */
+    box-sizing: border-box;
+  }
+  
+  button:hover {
     background-color: #0056b3;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
     .checkbox-group {
-        grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, 1fr);
     }
-
     .checkbox-label {
-        padding: 6px 4px;
+      padding: 6px 4px;
     }
-
+    button[type="toggle-all"] {
+      padding: 6px 4px;
+      width: 40%;
+    }
     body {
-        font-size: 14px;
+      font-size: 14px;
     }
-}
-
-@media (max-width: 480px) {
+  }
+  
+  @media (max-width: 480px) {
     form {
-        padding: 12px;
+      padding: 12px;
     }
-
     .checkbox-group {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 4px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4px;
     }
-
     .checkbox-label {
-        font-size: 0.875em; /* Slightly smaller for readability */
-        padding: 4px 2px;
-        min-height: 34px;
+      font-size: 0.875em; /* Slightly smaller for readability */
+      padding: 4px 2px;
+      min-height: 34px;
     }
-
+    button[type="toggle-all"] {
+      font-size: 0.875em;
+      padding: 4px 2px;
+      min-height: 34px;
+      width: 50%;
+    }
     body {
-        font-size: 14px;
+      font-size: 14px;
     }
-}
-
-@media (max-width: 360px) {
+  }
+  
+  @media (max-width: 360px) {
     .checkbox-group {
-        grid-template-columns: 1fr;
+      grid-template-columns: 1fr;
     }
-
     .checkbox-label {
-        min-height: 30px;
+      min-height: 30px;
     }
-
+    button[type="toggle-all"] {
+      min-height: 30px;
+      width: 60%;
+    }
     body {
-        font-size: 13px;
+      font-size: 13px;
     }
-}
+  }
