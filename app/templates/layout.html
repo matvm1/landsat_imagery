@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Landsat Image Lookup - {% block title %}{% endblock %}</title>
+    <title>Land Satellite Image Search - {% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="../static/styles/layout.css">
     {% block extra_stylesheets %}{% endblock %}
 </head>
 <body>
     <header>
         <a href="/">
-            <h1>Land Satellite Image Lookup</h1>
+            <h1>Land Satellite Image Search</h1>
         </a>
+        <p>Search and explore satellite images of land from around the world.
+        <br>Choose from different layers, each designed to highlight specific features of the terrain.</p>
     </header>
     <div class="content">
         {% block content %}{% endblock %}

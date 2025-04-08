@@ -10,14 +10,29 @@
     <form action="/get_landsat_img" method="GET">
         <label for="address">Enter an address:</label>
         <input type="text" id="address" name="address" placeholder='e.g. "New York, NY" or "Stonehenge"' required>
+        <p>Select the image layers to render:</p>
+        
+        <!-- Select All Button with the same class as the submit button -->
+        <button type="toggle-all" id="select-all" class="checkbox" onclick="selectAllCheckboxes()">Select All</button>
+
         <div class="checkbox-group">
             {% for band_combination_option in band_combinations.keys() %}
                 <label class="checkbox-label">
-                    <input type="checkbox" id="band_combination_option_{{ band_combination_option }}" name="band_combination_option" value="{{ band_combination_option }}" checked>
+                    <input type="checkbox" id="band_combination_option_{{ band_combination_option }}" name="band_combination_option" value="{{ band_combination_option }}">
                     <span>{{ band_combination_option }}</span>
                 </label>
             {% endfor %}
         </div>
-        <button type="submit">See Land Satellite Imagery</button>
+        
+        <button type="submit" class="button-style">Render Land Satellite Images</button>
     </form>
+
+    <script>
+        function selectAllCheckboxes() {
+            const checkboxes = document.querySelectorAll('.checkbox-group input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = true;
+            });
+        }
+    </script>
 {% endblock %}
